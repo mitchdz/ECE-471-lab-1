@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage{mathtools}
 \usepackage[utf8]{inputenc}
+\usepackage{float}
 
 
 \hide{
@@ -94,9 +95,13 @@ It is well-known that monoalphabetic substitution cipher (also known as monoalph
 
 \subsubsection{Task 1: solution}
 
-Shown below is the linux command `ls -l` in the lab1/task1 directory of my github repository. Inside that repository, the following command is used to copy the contents of the ciphertext into my X clipboard:
+Shown below is the linux command 
 \begin{verbatim}
-xclip -sel clip -i ciphertext.txt
+    $ ls -l 
+\end{verbatim}
+in the lab1/task1 directory of my github repository. Inside that repository, the following command is used to copy the contents of the ciphertext into my X clipboard:
+\begin{verbatim}
+    $ xclip -sel clip -i ciphertext.txt
 \end{verbatim}
 
 % Figure~\ref{fig:foo}
@@ -107,7 +112,7 @@ xclip -sel clip -i ciphertext.txt
 \end{figure}
 
 
-The contents of ciphertext.txt is shown below:
+The contents of ciphertext.txt is copied below:
 \begin{verbatim}
 ytn xqavhq yzhu  xu qzupvd ltmat qnncq vgxzy hmrty vbynh ytmq ixur qyhvurn
 vlvhpq yhme ytn gvrrnh bnniq imsn v uxuvrnuvhmvu yxx
@@ -194,6 +199,95 @@ pmhnayxh vup vevhy bhxc vhrx cxfmnq ytvy ivup gnqy emayzhn lmytxzy viqx
 nvhumur gnqy pmhnayxh uxcmuvymxuq vhn bnl vup bvh gnylnnu
 \end{verbatim}
 
+The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu`. The process to derive this key is outlined below with accompanying pictures.
+
+
+\begin{verbatim}
+the oscars turn  on sunday which seems about right after this long strange
+awards trip the bagger feels like a nonagenarian too
+
+the awards race was bookended by the demise of harvey weinstein at its outset
+and the apparent implosion of his film company at the end and it was shaped by
+the emergence of metoo times up blackgown politics armcandy activism and
+a national conversation as brief and mad as a fever dream about whether there
+ought to be a president winfrey the season didnt just seem extra long it was
+extra long because the oscars were moved to the first weekend in march to
+avoid conflicting with the closing ceremony of the winter olympics thanks
+pyeongchang
+
+one big question surrounding this years academy awards is how or if the
+ceremony will address metoo especially after the golden globes which became
+a jubilant comingout party for times up the movement spearheaded by 
+powerful hollywood women who helped raise millions of dollars to fight sexual
+harassment around the country
+
+signaling their support golden globes attendees swathed themselves in black
+sported lapel pins and sounded off about sexist power imbalances from the red
+carpet and the stage on the air e was called out about pay inequity after
+its former anchor catt sadler quit once she learned that she was making far
+less than a male cohost and during the ceremony natalie portman took a blunt
+and satisfying dig at the allmale roster of nominated directors how could
+that be topped
+
+as it turns out at least in terms of the oscars it probably wont be
+
+women involved in times up said that although the globes signified the
+initiatives launch they never intended it to be just an awards season
+campaign or one that became associated only with redcarpet actions instead
+a spokeswoman said the group is working behind closed doors and has since
+amassed  million for its legal defense fund which after the globes was
+flooded with thousands of donations of  or less from people in some 
+countries
+
+
+no call to wear black gowns went out in advance of the oscars though the
+movement will almost certainly be referenced before and during the ceremony 
+especially since vocal metoo supporters like ashley judd laura dern and
+nicole kidman are scheduled presenters
+
+another feature of this season no one really knows who is going to win best
+picture arguably this happens a lot of the time inarguably the nailbiter
+narrative only serves the awards hype machine but often the people forecasting
+the race socalled oscarologists can make only educated guesses
+
+the way the academy tabulates the big winner doesnt help in every other
+category the nominee with the most votes wins but in the best picture
+category voters are asked to list their top movies in preferential order if a
+movie gets more than  percent of the firstplace votes it wins when no
+movie manages that the one with the fewest firstplace votes is eliminated and
+its votes are redistributed to the movies that garnered the eliminated ballots
+secondplace votes and this continues until a winner emerges
+
+it is all terribly confusing but apparently the consensus favorite comes out
+ahead in the end this means that endofseason awards chatter invariably
+involves tortured speculation about which film would most likely be voters
+second or third favorite and then equally tortured conclusions about which
+film might prevail
+
+in  it was a tossup between boyhood and the eventual winner birdman
+in  with lots of experts betting on the revenant or the big short the
+prize went to spotlight last year nearly all the forecasters declared la
+la land the presumptive winner and for two and a half minutes they were
+correct before an envelope snafu was revealed and the rightful winner
+moonlight was crowned
+
+this year awards watchers are unequally divided between three billboards
+outside ebbing missouri the favorite and the shape of water which is
+the baggers prediction with a few forecasting a hail mary win for get out
+
+but all of those films have historical oscarvoting patterns against them the
+shape of water has  nominations more than any other film and was also
+named the years best by the producers and directors guilds yet it was not
+nominated for a screen actors guild award for best ensemble and no film has
+won best picture without previously landing at least the actors nomination
+since braveheart in  this year the best ensemble sag ended up going to
+three billboards which is significant because actors make up the academys
+largest branch that film while divisive also won the best drama golden globe
+and the bafta but its filmmaker martin mcdonagh was not nominated for best
+director and apart from argo movies that land best picture without also
+earning best director nominations are few and far between
+\end{verbatim}
+
 After the ciphertext is copied, a program is utilized that is supplied by cryptoclub.org. The domain is shown below.
 
 \begin{figure}[!ht]
@@ -217,10 +311,7 @@ Below is the page you should see upon opening the URL in Figure~\ref{fig:c0.1}
 \end{figure}
 
 
-The contents of the ciphertext are copied into the program as shown in Figure~\ref{fig:c3}.
-
-
-
+The contents of the ciphertext are copied into the program as shown in Figure~\ref{fig:c3}. On this page, the ciphertext shows the frequency of letters and relates the frequency of letters in the ciphertext to the frequency of letters in the English alphabet.
 
 
 \begin{figure}[!ht]
@@ -231,160 +322,195 @@ The contents of the ciphertext are copied into the program as shown in Figure~\r
     \label{fig:c3}
 \end{figure}
 
-
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c4.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping N to e and Y to t}
     \label{fig:c4}
 \end{figure}
 
+In Figure~\ref{fig:c4} N is mapped to `e` and Y is mapped to `t` due to frequency analysis (You can see that N matches e and Y matches t in frequency on the right). It is very easy then to notice that T maps to `h` shown in Figure~\ref{fig:c5} to create the Trigram `the`.
 
-
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c5.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping T to h}
     \label{fig:c5}
 \end{figure}
 
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c6.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping U to n, V to a, X to o, and H to r}
     \label{fig:c6}
 \end{figure}
 
+Figure~\ref{fig:c6} shows how the ciphertext letters `UVXH` are mapped to `naor`. This mapping was done by looking at the ciphertext frequency and mapping the frequency to the closest related frequency in the english alphabet. Words do not particularly make sense yet, so it is just assumed for now that this is the correct mapping.
 
-\begin{figure}[!ht]
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c7.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{mapping L to w}
     \label{fig:c7}
 \end{figure}
 
-\begin{figure}[!ht]
+
+In Figure~\ref{fig:c7} the string `hether` was shown, which clearly meant to spell `whether`. Therefore, L maps to w.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c8.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping R to g}
     \label{fig:c8}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c8} the string 'ou-ht' is shown, which is meant to say 'ought'. Therefore, R maps to g.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c9.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping G to b and M to i}
     \label{fig:c9}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c9} The string 'w-nter' was shown, which should mean 'winter', Thus M maps to i. The mapping for G to b is not shown in this picture, but was done in a very similar fashion with another word.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c10.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping J to q and Q to s}
     \label{fig:c10}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c10} The string '-ue-tion' was present, which obviously meant 'question', therefore J maps to q & Q maps to s.
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c11.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping P to d}
     \label{fig:c11}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c11} The string 'an-' and '-ig' and '-uring' was present. Therefore, it is clear that P maps to d.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c12.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping A to c, B to f, C to m, D to y, and I to l}
     \label{fig:c12}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c12} there are a lot of substitutions made. In particular, substitution A to c, B to f, C to m, D to y, and I to l. 'sunda-' was present which lead D to map to y, 'fee-s' which mapped I to l, 'os-ars' which mapped A to c, and the mapping from C to m is not present in Figure~\ref{fig:c12}, but was done in a much similar fashion.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c13.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping S to k}
     \label{fig:c13}
 \end{figure}
 
-\begin{figure}[!ht]
+In figure~\ref{fig:c13} the mapping from S to k was done. This is due to the work 'li-e' being present, which is \emph{likely} to be 'like'. Therefore, S maps to K. (get the pun)
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c14.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{mapping F to l, removing I to l}
     \label{fig:c14}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c14} F is now mapped to l because the assumption was that the string 'harley' needed to be made. This removed the mapping from I to l.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c15.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping E to p, and re-mapping I to l}
     \label{fig:c15}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c15} E is mapped to p because 'olym-ics' was present, which definitely meains olympics. It was also noted that I should definitly be L because the string 'with the c-osing ceremony' was present.
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c16.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping F to v}
     \label{fig:c16}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c16} it is clear that F should be mapped to v now, and that 'har-ey' should be 'harvey' to complete the name Harvery Weinstein.
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c17.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping O to j}
     \label{fig:c17}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c17} it is clear that O should be mapped to j because the phrase 'the season didnt -ust seem' which obviously meant to say just.
+
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c18.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping K to x}
     \label{fig:c18}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c18} it is clear that K should map x because the string 'e-perts' is present which should map to 'experts'.
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c19.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping W to m, removing C to m}
     \label{fig:c19}
 \end{figure}
 
-\begin{figure}[!ht]
+In Figure~\ref{fig:c19} it is clear that W should map to `m` because the string 'pri-e' is present which is referring to 'prime'
+
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.48]{c20.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{mapping C to m and removing W to m}
     \label{fig:c20}
 \end{figure}
+
+In Figure~\ref{fig:c20} It is now really clear that mapping W to m was a mistake because the string 'fro- argo -ovies that' which maps to 'from argo movies that'.
 
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[scale=0.48]{c21.png}
     \end{center}{}
-    \caption{Cracking the ciphertext with Crack Substitution Tool}
+    \caption{Mapping W to z}
     \label{fig:c21}
 \end{figure}
 
+In Figure~\ref{fig:c21} W maps to z due to the process of elimination, because W does not show up, and neither does Z.
 
 
-
-
-
+Finally, the key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu` is obtained, where the first string `abcdefghijklmnopqrstuvwxyz` is the ciphertext letters.
 
 
 
