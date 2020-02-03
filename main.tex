@@ -60,7 +60,7 @@
 \begin{document}
 
 \maketitle
-\centering\textbf{Github with all documentation - \url{https://www.github.com/mitchdz/ECE471}}
+\textbf{Github with all documentation - \url{https://www.github.com/mitchdz/ECE471}}
 \tableofcontents 
 
 \clearpage
@@ -198,6 +198,15 @@ nvhumur gnqy pmhnayxh uxcmuvymxuq vhn bnl vup bvh gnylnnu
 
 The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu`. The process to derive this key is outlined below with accompanying pictures.
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.5]{c23.png}
+    \end{center}{}
+    \caption{Command to convert ciphertext to plaintext}
+    \label{fig:c23}
+\end{figure}
+
+Figure~\ref{fig:c23} shows the linux command used to convert the ciphertex that was shown into the accompanying plaintext.
 
 \begin{verbatim}
 the oscars turn  on sunday which seems about right after this long strange
@@ -509,7 +518,6 @@ In Figure~\ref{fig:c21} W maps to z due to the process of elimination, because W
 
 Finally, the key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu` is obtained, where the first string `abcdefghijklmnopqrstuvwxyz` is the ciphertext letters.
 
-
 \subsection{Task 2: Encryption using Different Ciphers and Modes}
 
 In this task, we will play with various encryption algorithms and modes. You can use the following
@@ -531,11 +539,56 @@ common options for the openssl enc command in the following:
     -out <file>     output file
     -e              encrypt
     -d              decrypt
-    -K/-iv          key/iv in hex is the next argument
+    -K/-iv          key/iv in hex is the next argumc23ent
     -[pP]           print the iv/key (then exit if -P)
 \end{verbatim}
 
 \subsubsection{Task2: solution}
+
+In order to complete this task, we must utilize the command man as shown in Figure~\ref{fig:t2p0} to find what all our possible encryption schemes are.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p0.png}
+    \end{center}{}
+    \caption{using man on enc}
+    \label{fig:t2p0}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p1.png}
+    \end{center}{}
+    \caption{encryption schemes from enc using man part 1}
+    \label{fig:t2p1}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p2.png}
+    \end{center}{}
+    \caption{encryption schemes from enc using man part 2}
+    \label{fig:t2p2}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p3.png}
+    \end{center}{}
+    \caption{encryption schemes from enc using man part 3}
+    \label{fig:t2p3}
+\end{figure}
+
+Figure~\ref{fig:t2p1}, Figure~\ref{fig:t2p2} and Figure~\ref{fig:t2p3} show the results of the command shown in  Figure~\ref{fig:t2p0} which is an impresive amount of encryption schemes that could be used, most of which have 3 levels of bits that can be used to effectively make the algorithm more resistant to certain attacks such as brute force attacks.
+
+This task requires us to try at least 3 different ciphers on the ciphertext. Just for fun, the following ciphers are used:
+
+\begin{enumerate}
+    \item bf-cbc
+    \item aes-256-cbc
+    \item aria-192-ecb
+    \item camellia-256-ofb
+\end{enumerate}
 
 
 \end{document}
