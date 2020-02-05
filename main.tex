@@ -68,11 +68,19 @@
 
 Secret Key Encryption Lab
 
-Copyright © 2018 Wenliang Du, Syracuse University. The development of this document was partially funded by the National Science Foundation under Award No. 1303306 and 1718086. This work is licensed under a Creative Commons Attribution-NonCommercial- ShareAlike 4.0 International License. A human-readable summary of (and not a substitute for) the license is the following: You are free to copy and redistribute the material in any medium or format. You must give appropriate credit. If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. You may not use the material for commercial purposes.
+Copyright © 2018 Wenliang Du, Syracuse University. The development of this document was partially funded by the National
+Science Foundation under Award No. 1303306 and 1718086. This work is licensed under a Creative Commons
+Attribution-NonCommercial- ShareAlike 4.0 International License. A human-readable summary of (and not a substitute for)
+the license is the following: You are free to copy and redistribute the material in any medium or format. You must give
+appropriate credit. If you remix, transform, or build upon the material, you must distribute your contributions under the
+same license as the original. You may not use the material for commercial purposes.
 
 \section{Overview}
 
-The learning objective of this lab is for students to get familiar with the concepts in the secret-key encryption. After finishing the lab, students should be able to gain a first-hand experience on encryption algorithms, encryption modes, paddings, and initial vector (IV). Moreover, students will be able to use tools and write programs to encrypt/decrypt messages. This lab covers the following topics:
+The learning objective of this lab is for students to get familiar with the concepts in the secret-key encryption. After
+finishing the lab, students should be able to gain a first-hand experience on encryption algorithms, encryption modes,
+paddings, and initial vector (IV). Moreover, students will be able to use tools and write programs to encrypt/decrypt
+messages. This lab covers the following topics:
 
     \begin{itemize}
         \item Secret-key encryption
@@ -81,14 +89,20 @@ The learning objective of this lab is for students to get familiar with the conc
         \item Programming using the crypto library
     \end{itemize}
 
-\textbf{Lab Environment}. This lab has been tested on our pre-built Ubuntu 12.04 VM and Ubuntu 16.04 VM, both of which can be downloaded from the SEED website.
+\textbf{Lab Environment}. This lab has been tested on our pre-built Ubuntu 12.04 VM and Ubuntu 16.04 VM, both of which
+can be downloaded from the SEED website.
 
 \clearpage
 
 \section{Lab Tasks}
+\clearpage
 \subsection{Task 1: Frequency c Against Monoalphabetic Substitution Cipher}
     
-It is well-known that monoalphabetic substitution cipher (also known as monoalphabetic cipher) is not secure, because it can be subjected to frequency analysis. In this lab, you are given a cipher-text that is encrypted using a monoalphabetic cipher; namely, each letter in the original text is replaced by another letter, where the replacement does not vary (i.e., a letter is always replaced by the same letter during the encryption). Your job is to find out the original text using frequency analysis. It is known that the original text is an English article.
+It is well-known that monoalphabetic substitution cipher (also known as monoalphabetic cipher) is not secure, because it
+can be subjected to frequency analysis. In this lab, you are given a cipher-text that is encrypted using a monoalphabetic
+cipher; namely, each letter in the original text is replaced by another letter, where the replacement does not vary
+(i.e., a letter is always replaced by the same letter during the encryption). Your job is to find out the original text
+using frequency analysis. It is known that the original text is an English article.
 
 \subsubsection{Task 1: solution}
 
@@ -96,7 +110,8 @@ Shown below is the linux command
 \begin{verbatim}
     $ ls -l 
 \end{verbatim}
-in the lab1/task1 directory of my github repository. Inside that repository, the following command is used to copy the contents of the ciphertext into my X clipboard:
+in the lab1/task1 directory of my github repository. Inside that repository, the following command is used to copy the
+contents of the ciphertext into my X clipboard:
 \begin{verbatim}
     $ xclip -sel clip -i ciphertext.txt
 \end{verbatim}
@@ -196,7 +211,8 @@ pmhnayxh vup vevhy bhxc vhrx cxfmnq ytvy ivup gnqy emayzhn lmytxzy viqx
 nvhumur gnqy pmhnayxh uxcmuvymxuq vhn bnl vup bvh gnylnnu
 \end{verbatim}
 
-The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu`. The process to derive this key is outlined below with accompanying pictures.
+The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to
+`cfmypvbrlqxwiejdsgkhnazotu`. The process to derive this key is outlined below with accompanying pictures.
 
 \begin{figure}[H]
     \begin{center}
@@ -206,7 +222,8 @@ The related plaintext is shown below using the final (substitution) key `abcdefg
     \label{fig:c23}
 \end{figure}
 
-Figure~\ref{fig:c23} shows the linux command used to convert the ciphertex that was shown into the accompanying plaintext.
+Figure~\ref{fig:c23} shows the linux command used to convert the ciphertex that was shown into the accompanying
+plaintext.
 
 \begin{verbatim}
 the oscars turn  on sunday which seems about right after this long strange
@@ -317,7 +334,9 @@ Below is the page you should see upon opening the URL in Figure~\ref{fig:c0.1}
 \end{figure}
 
 
-The contents of the ciphertext are copied into the program as shown in Figure~\ref{fig:c3}. On this page, the ciphertext shows the frequency of letters and relates the frequency of letters in the ciphertext to the frequency of letters in the English alphabet.
+The contents of the ciphertext are copied into the program as shown in Figure~\ref{fig:c3}. On this page, the ciphertext
+shows the frequency of letters and relates the frequency of letters in the ciphertext to the frequency of letters in the
+English alphabet.
 
 
 \begin{figure}[!ht]
@@ -336,7 +355,9 @@ The contents of the ciphertext are copied into the program as shown in Figure~\r
     \label{fig:c4}
 \end{figure}
 
-In Figure~\ref{fig:c4} N is mapped to `e` and Y is mapped to `t` due to frequency analysis (You can see that N matches e and Y matches t in frequency on the right). It is very easy then to notice that T maps to `h` shown in Figure~\ref{fig:c5} to create the Trigram `the`.
+In Figure~\ref{fig:c4} N is mapped to `e` and Y is mapped to `t` due to frequency analysis (You can see that N matches e
+and Y matches t in frequency on the right). It is very easy then to notice that T maps to `h` shown in
+Figure~\ref{fig:c5} to create the Trigram `the`.
 
 \begin{figure}[H]
     \begin{center}
@@ -355,7 +376,9 @@ In Figure~\ref{fig:c4} N is mapped to `e` and Y is mapped to `t` due to frequenc
     \label{fig:c6}
 \end{figure}
 
-Figure~\ref{fig:c6} shows how the ciphertext letters `UVXH` are mapped to `naor`. This mapping was done by looking at the ciphertext frequency and mapping the frequency to the closest related frequency in the english alphabet. Words do not particularly make sense yet, so it is just assumed for now that this is the correct mapping.
+Figure~\ref{fig:c6} shows how the ciphertext letters `UVXH` are mapped to `naor`. This mapping was done by looking at the
+ciphertext frequency and mapping the frequency to the closest related frequency in the english alphabet. Words do not
+particularly make sense yet, so it is just assumed for now that this is the correct mapping.
 
 
 
@@ -388,7 +411,8 @@ In Figure~\ref{fig:c8} the string 'ou-ht' is shown, which is meant to say 'ought
     \label{fig:c9}
 \end{figure}
 
-In Figure~\ref{fig:c9} The string 'w-nter' was shown, which should mean 'winter', Thus M maps to i. The mapping for G to b is not shown in this picture, but was done in a very similar fashion with another word.
+In Figure~\ref{fig:c9} The string 'w-nter' was shown, which should mean 'winter', Thus M maps to i. The mapping for G to
+b is not shown in this picture, but was done in a very similar fashion with another word.
 
 \begin{figure}[H]
     \begin{center}
@@ -398,7 +422,8 @@ In Figure~\ref{fig:c9} The string 'w-nter' was shown, which should mean 'winter'
     \label{fig:c10}
 \end{figure}
 
-In Figure~\ref{fig:c10} The string '-ue-tion' was present, which obviously meant 'question', therefore J maps to q & Q maps to s.
+In Figure~\ref{fig:c10} The string '-ue-tion' was present, which obviously meant 'question', therefore J maps to q & Q
+maps to s.
 
 
 \begin{figure}[H]
@@ -419,7 +444,9 @@ In Figure~\ref{fig:c11} The string 'an-' and '-ig' and '-uring' was present. The
     \label{fig:c12}
 \end{figure}
 
-In Figure~\ref{fig:c12} there are a lot of substitutions made. In particular, substitution A to c, B to f, C to m, D to y, and I to l. 'sunda-' was present which lead D to map to y, 'fee-s' which mapped I to l, 'os-ars' which mapped A to c, and the mapping from C to m is not present in Figure~\ref{fig:c12}, but was done in a much similar fashion.
+In Figure~\ref{fig:c12} there are a lot of substitutions made. In particular, substitution A to c, B to f, C to m, D to
+y, and I to l. 'sunda-' was present which lead D to map to y, 'fee-s' which mapped I to l, 'os-ars' which mapped A to c,
+and the mapping from C to m is not present in Figure~\ref{fig:c12}, but was done in a much similar fashion.
 
 \begin{figure}[H]
     \begin{center}
@@ -429,7 +456,8 @@ In Figure~\ref{fig:c12} there are a lot of substitutions made. In particular, su
     \label{fig:c13}
 \end{figure}
 
-In figure~\ref{fig:c13} the mapping from S to k was done. This is due to the work 'li-e' being present, which is \emph{likely} to be 'like'. Therefore, S maps to K. (get the pun)
+In figure~\ref{fig:c13} the mapping from S to k was done. This is due to the work 'li-e' being present, which is
+\emph{likely} to be 'like'. Therefore, S maps to K. (get the pun)
 
 
 \begin{figure}[H]
@@ -440,7 +468,8 @@ In figure~\ref{fig:c13} the mapping from S to k was done. This is due to the wor
     \label{fig:c14}
 \end{figure}
 
-In Figure~\ref{fig:c14} F is now mapped to l because the assumption was that the string 'harley' needed to be made. This removed the mapping from I to l.
+In Figure~\ref{fig:c14} F is now mapped to l because the assumption was that the string 'harley' needed to be made. This
+removed the mapping from I to l.
 
 \begin{figure}[H]
     \begin{center}
@@ -450,7 +479,8 @@ In Figure~\ref{fig:c14} F is now mapped to l because the assumption was that the
     \label{fig:c15}
 \end{figure}
 
-In Figure~\ref{fig:c15} E is mapped to p because 'olym-ics' was present, which definitely meains olympics. It was also noted that I should definitly be L because the string 'with the c-osing ceremony' was present.
+In Figure~\ref{fig:c15} E is mapped to p because 'olym-ics' was present, which definitely meains olympics. It was also
+noted that I should definitly be L because the string 'with the c-osing ceremony' was present.
 
 
 \begin{figure}[H]
@@ -461,7 +491,8 @@ In Figure~\ref{fig:c15} E is mapped to p because 'olym-ics' was present, which d
     \label{fig:c16}
 \end{figure}
 
-In Figure~\ref{fig:c16} it is clear that F should be mapped to v now, and that 'har-ey' should be 'harvey' to complete the name Harvery Weinstein.
+In Figure~\ref{fig:c16} it is clear that F should be mapped to v now, and that 'har-ey' should be 'harvey' to complete
+the name Harvery Weinstein.
 
 
 \begin{figure}[H]
@@ -472,7 +503,8 @@ In Figure~\ref{fig:c16} it is clear that F should be mapped to v now, and that '
     \label{fig:c17}
 \end{figure}
 
-In Figure~\ref{fig:c17} it is clear that O should be mapped to j because the phrase 'the season didnt -ust seem' which obviously meant to say just.
+In Figure~\ref{fig:c17} it is clear that O should be mapped to j because the phrase 'the season didnt -ust seem' which
+obviously meant to say just.
 
 
 \begin{figure}[H]
@@ -483,7 +515,8 @@ In Figure~\ref{fig:c17} it is clear that O should be mapped to j because the phr
     \label{fig:c18}
 \end{figure}
 
-In Figure~\ref{fig:c18} it is clear that K should map x because the string 'e-perts' is present which should map to 'experts'.
+In Figure~\ref{fig:c18} it is clear that K should map x because the string 'e-perts' is present which should map to
+'experts'.
 
 \begin{figure}[H]
     \begin{center}
@@ -493,7 +526,8 @@ In Figure~\ref{fig:c18} it is clear that K should map x because the string 'e-pe
     \label{fig:c19}
 \end{figure}
 
-In Figure~\ref{fig:c19} it is clear that W should map to `m` because the string 'pri-e' is present which is referring to 'prime'
+In Figure~\ref{fig:c19} it is clear that W should map to `m` because the string 'pri-e' is present which is referring to
+'prime'
 
 \begin{figure}[H]
     \begin{center}
@@ -503,7 +537,8 @@ In Figure~\ref{fig:c19} it is clear that W should map to `m` because the string 
     \label{fig:c20}
 \end{figure}
 
-In Figure~\ref{fig:c20} It is now really clear that mapping W to m was a mistake because the string 'fro- argo -ovies that' which maps to 'from argo movies that'.
+In Figure~\ref{fig:c20} It is now really clear that mapping W to m was a mistake because the string 'fro- argo -ovies
+that' which maps to 'from argo movies that'.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -516,8 +551,10 @@ In Figure~\ref{fig:c20} It is now really clear that mapping W to m was a mistake
 In Figure~\ref{fig:c21} W maps to z due to the process of elimination, because W does not show up, and neither does Z.
 
 
-Finally, the key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu` is obtained, where the first string `abcdefghijklmnopqrstuvwxyz` is the ciphertext letters.
+Finally, the key `abcdefghijklmnopqrstuvwxyz` to `cfmypvbrlqxwiejdsgkhnazotu` is obtained, where the first string
+`abcdefghijklmnopqrstuvwxyz` is the ciphertext letters.
 
+\clearpage
 \subsection{Task 2: Encryption using Different Ciphers and Modes}
 
 In this task, we will play with various encryption algorithms and modes. You can use the following
@@ -527,7 +564,7 @@ and man enc.
 \begin{verbatim}
 openssl enc -ciphertype -e -in plain.txt -out cipher.bin \
     -K 00112233445566778889aabbccddeeff \
-    -iv 0102030405060708SEED 
+    -iv 0102030405060708 
 \end{verbatim}
 
 Please replace the ciphertype with a specific cipher type, such as -aes-128-cbc, -bf-cbc,
@@ -545,11 +582,12 @@ common options for the openssl enc command in the following:
 
 \subsubsection{Task2: solution}
 
-In order to complete this task, we must utilize the command man as shown in Figure~\ref{fig:t2p0} to find what all our possible encryption schemes are.
+In order to complete this task, we must utilize the command man as shown in Figure~\ref{fig:t2p0} to find what all our
+possible encryption schemes are.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[scale=0.48]{t2p0.png}
+        \includegraphics[scale=0.7]{t2p0.png}
     \end{center}{}
     \caption{using man on enc}
     \label{fig:t2p0}
@@ -579,16 +617,423 @@ In order to complete this task, we must utilize the command man as shown in Figu
     \label{fig:t2p3}
 \end{figure}
 
-Figure~\ref{fig:t2p1}, Figure~\ref{fig:t2p2} and Figure~\ref{fig:t2p3} show the results of the command shown in  Figure~\ref{fig:t2p0} which is an impresive amount of encryption schemes that could be used, most of which have 3 levels of bits that can be used to effectively make the algorithm more resistant to certain attacks such as brute force attacks.
+Figure~\ref{fig:t2p1}, Figure~\ref{fig:t2p2} and Figure~\ref{fig:t2p3} show the results of the command shown in 
+Figure~\ref{fig:t2p0} which is an impresive amount of encryption schemes that could be used, most of which have 3 levels
+of bits that can be used to effectively make the algorithm more resistant to certain attacks such as brute force attacks.
 
-This task requires us to try at least 3 different ciphers on the ciphertext. Just for fun, the following ciphers are used:
+This task requires us to try at least 3 different ciphers on the ciphertext. Just for fun, the following ciphers are
+used:
 
 \begin{enumerate}
     \item bf-cbc
-    \item aes-256-cbc
     \item aria-192-ecb
-    \item camellia-256-ofb
+    \item camellia-192-ofb
 \end{enumerate}
 
+First off is blowfish-cbc! There is no reason this was picked, it just sounds fun. blowfish is a
+symmetric-key block cipher which was designed in 1993. Blowfish was created as an alternative to the,
+at the time, aging DES standard. Blowfish became popular because most other ciphers were proprietary
+and required money and licensing to use. Blowfish was, and will be, public domain!
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p5.png}
+    \end{center}{}
+    \caption{using bf-cbc to encrypt}
+    \label{fig:t2p5}
+\end{figure}
+
+Figure~\ref{fig:t2p5} shows the results of encrypting a simple plaintext file using bf-cbc
+(blowfish-cbc), and the resulting cipher.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p6.png}
+    \end{center}{}
+    \caption{using bf-cbc to decrypt}
+    \label{fig:t2p6}
+\end{figure}
+
+Figure~\ref{fig:t2p6} shows the process of decrypting blowfish-cbc using openssl. 
+It is extremely similar to encrypting, the only difference is swapping the in/out file, and adding -d 
+instead of -e. Just for fun, the time of encrypting and decrypting the program was done using the linux
+time command, which is shown below.
+
+\begin{verbatim}
+time openssl enc -bf-cbc -d -in cipher.bin -out out.txt \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 0102030405060708
+\end{verbatim}
+
+Encryption time: 0.004s\\
+Decryption Time: 0.004s
+
+In the end, blowfish-cbc is a very fun algorithm with a fun background. It's a shame it's not seen as
+much.
+
+
+Now on to aria-192-ecb!
+
+The process for aria-192-ecb is \emph{extremely} similar to blowfish-cbc as shown in
+Figure~\ref{fig:t2p5}. 
+Therefore, for this section no pictures will be shown, but rather the commands will be simply printed
+as text.
+
+\begin{verbatim}
+$ openssl enc -aria-192-ecb -d -in plain.txt -out aria-192-ecb_cipher.bin \
+      -K 00112233445566778889aabbccddeeff \
+      -iv 0102030405060708
+warning: iv not use by this cipher
+hex string is too short, padding with zero bytes to length
+\end{verbatim}
+
+Here, openssl outputs some interesting comments on the program, stating no IV is used, 
+and the hex string is too short. Let's try that again
+
+\begin{verbatim}
+$ openssl enc -aria-192-ecb -d -in plain.txt -out aria-192-ecb_cipher.bin \
+      -K 00112233445566778889aabbccddeeffeeffeeffeeffeeff
+$ cat plain.txt
+hello, I am plaintext!
+$ cat aria-192-ecb_cipher.bin
+��6�����&�eI�-���R�^�:'&�
+\end{verbatim}
+
+There we go, that is much more like it!
+
+And of course, the process to decrypt is very similar to the encryption process.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p7.png}
+    \end{center}{}
+    \caption{using aria-192-ecb to decrypt}
+    \label{fig:t2p7}
+\end{figure}
+
+Figure~\ref{fig:t2p7} shows the process of decrypting with aria-192-ecb. time was utilized again in
+order to  determine how long aria-192-ecb takes.
+
+Encryption Time: 0.010s \\
+Decryption Time: 0.006s
+
+
+Now for the final algorithm to check out, camellia-192-ofb!
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p8.png}
+    \end{center}{}
+    \caption{using camellia-256-ofb to encrypt}
+    \label{fig:t2p8}
+\end{figure}
+
+Figure~\ref{fig:t2p8} shows the process of encrypting with camellia-192-ofb.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t2p9.png}
+    \end{center}{}
+    \caption{using camellia-256-ofb to decrypt}
+    \label{fig:t2p9}
+\end{figure}
+
+Figure~\ref{fig:t2p9} shows the process of decrypting with camellia-192-ofb. And of course, 
+ztime was used for both. The results are shown below.
+
+Encrypting: 0.003s\\
+Decrypting: 0.008s
+
+\clearpage
+\subsection{Task 3: Encryption Mode – ECB vs. CBC}
+
+
+The file \emph{pic\textunderscore{}original.bmp} can be downloaded from my github
+\url{github.com/mitchdz/ECE471}, 
+and it contains a simple picture. We would like to encrypt this picture, so people without the
+encryption keys cannot
+know what is in the picture. Please encrypt the file using the ECB (Electronic Code Book) and CBC 
+(Cipher Block Chaining) modes, and then do the following:
+
+\begin{enumerate}
+    \item Let us treat the encrypted picture as a picture, and use a picture viewing software to
+    display it. How- ever, For the .bmp file, the first 54 bytes contain the header information about
+    the picture, we have to set it correctly, so the encrypted file can be treated as a legitimate .bmp
+    file. We will replace the header of the encrypted picture with that of the original picture. We can
+    use the bless hex editor tool (already installed on our VM) to directly modify binary files. We can
+    also use the following commands to get the header from p1.bmp, the data from p2.bmp (from offset 55
+    to the end of the file), and then combine the header and data together into a new file.
+    
+    \begin{verbatim}
+    $ head -c 54 p1.bmp > header
+    $ tail -c +55 p2.bmp > body
+    $ cat header body > new.bmp
+    \end{verbatim}
+
+    \item Display the encrypted picture using a picture viewing program (we have installed an image
+    viewer
+    program called eog on our VM). Can you derive any useful information about the original picture
+    from the encrypted picture? Please explain your observations.
+\end{enumerate}
+
+Select a picture of your choice, repeat the experiment above, and report your observations.
+
+\subsubsection{Task 3: Solution}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.2]{t3p0.1.png}
+    \end{center}{}
+    \caption{Original image that is being encrypted}
+    \label{fig:t3p0.1}
+\end{figure}
+
+Figure~\ref{fig:t3p0.1} shows the original file. The file is a red oval in the center, with a
+teal square on the bottom right that has a blue border.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t3p0.png}
+    \end{center}{}
+    \caption{using cbc to encrypt image}
+    \label{fig:t3p0}
+\end{figure}
+
+Figure~\ref{fig:t3p0} shows the commands used in order to encrypt he image using cbc.
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t3p1.png}
+    \end{center}{}
+    \caption{results of cbc on image}
+    \label{fig:t3p1}
+\end{figure}
+
+Figure~\ref{fig:t3p1} shows the results of encrypting the image using cbc. There is not much data that
+is able to be extracted from this image.
+
+Similar to above, ecb (electronic codebook is now used)
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.48]{t3p2.png}
+    \end{center}{}
+    \caption{encrypting image using ECB}
+    \label{fig:t3p2}
+\end{figure}
+
+Figure~\ref{fig:t3p2} shows the command used to encrypt the image using ECB. Note the comment
+saying that the iv is not used by this cipher. Unlike CBC, EBC does not need an initial value. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.35]{t3p3.png}
+    \end{center}{}
+    \caption{results of ECB on image}
+    \label{fig:t3p3}
+\end{figure}
+
+Figure~\ref{fig:t3p3} shows the resulting ciphertext after encrypting the image with ECB. It is
+very easy to identify what the original image is. Although some details such as the blue border
+are gone, and the colors of the oval and the square have changed. If this was a document of a
+person, the person would most likely be easily identifiable.
+
+Now it is time to try this experiment on my own image!
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.2]{t3_personal_image.jpeg}
+    \end{center}{}
+    \caption{Personal image to be encrypted}
+    \label{fig:t3_personal_image}
+\end{figure}
+
+Figure~\ref{fig:t3_personal_image} shows the personal image used to do this experiment on. This image
+is the background that I use for my laptop.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.5]{t3p5.png}
+    \end{center}{}
+    \caption{Encrypting personal image using CBC}
+    \label{fig:t3p5}
+\end{figure}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.15]{t3_personal_cbc.jpg}
+    \end{center}{}
+    \caption{results of encrypting Figure~\ref{fig:t3_personal_image} with CBC}
+    \label{fig:t3_personal_cbc}
+\end{figure}
+
+Figure~\ref{fig:t3_personal_cbc} shows the results of encrypting
+Figure~\ref{fig:t3_personal_image} with CBC. The result is, as expected, seemingly random.
+There is nothing to be able to determine about the picture from viewing this image.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.5]{t3p4.png}
+    \end{center}{}
+    \caption{Encrypting personal image using ECB}
+    \label{fig:t3p4}
+\end{figure}
+
+Figure~\ref{fig:t3p4} shows the process of encrypting the personal image using ECB. This process is
+very similar to Figure~\ref{fig:t3p2} and Figure~\ref{fig:t3p0}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.18]{t3_personal_ecb.jpg}
+    \end{center}{}
+    \caption{Result of encrypting with ECB}
+    \label{fig:t3_personal_ecb}
+\end{figure}
+
+Figure~\ref{fig:t3_personal_ecb} shows the results of encrypting Figure~\ref{fig:t3_personal_image}
+with ECB, which honestly is not too easy to identify what the image should be. This leads me to believe
+that ECB only reveals the contents via inspection if there is a large enough contrast between objects
+and colors.
+
+\clearpage
+\subsection{Task 4: Padding}
+
+For block ciphers, when the size of a plaintext is not a multiple of the block size, padding
+may be required. All the block ciphers normally use PKCS#5 padding, which is known as standard
+block padding. We will conduct the following experiments to understand how this type of
+padding works:
+\begin{enumerate}
+    \item Use ECB, CBC, CFB, and OFB modes to encrypt a file (you can pick any cipher). Please report
+    which modes have paddings and which ones do not. For those that do not need paddings, please
+    explain why.
+    
+    \item Let us create three files, which contain 5 bytes, 10 bytes, and 16 bytes, respectively. We
+    can
+    use the following "echo -n" command to create such files. The following example creates a file
+    f1.txt with length 5 (without the -n option, the length will be 6, because a newline character will
+    be added by echo):
+    
+\begin{verbatim}
+$ echo -n "12345" > f1.txt
+\end{verbatim}
+    
+    We then use "openssl enc -aes-128-cbc -e" to encrypt these three files using 128-bit AES with CBC
+    mode. Please describe the size of the encrypted files. 
+    
+    We would like to see what is added to the padding during the encryption. To achieve this goal, we
+    will decrypt these files using "openssl enc -aes-128-cbc -d". Unfortunately, decryption by default
+    will automatically remove the padding, making it impossible for us to see the padding. However, the
+    command does have an option called "-nopad", which disables the padding, i.e., during the
+    decryption, the command will not remove the padded data. Therefore, by looking at the decrypted
+    data, we can see what data are used in the padding. Please use this technique to figure out what
+    paddings are added to the three files.
+
+    It should be noted that padding data may not be printable, so you need to use a hex tool to display
+    the content. The following example shows how to display a file in the hex format:
+    
+\begin{verbatim}
+$ hexdump -C p1.txt
+00000000 31 32 33 34 35 36 37 38 39 49 4a 4b 4c 0a  |123456789IJKL.|
+$ xxd p1.txt
+00000000: 3132 3334 3536 3738 3949 4a4b 4c0a         123456789IJKL.
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{Task 4: Solution}
+
+The script used for this solution can be found at the following url -
+\url{https://github.com/mitchdz/ECE471/blob/master/lab1/task2-6/t4/t4_commands.sh}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.65]{t4p0.png}
+    \end{center}{}
+    \caption{task 4 test files}
+    \label{fig:t4p0}
+\end{figure}
+
+Figure~\ref{fig:t4p0} shows the test files being used in this section. The files are very simple, and
+the linux command used shows the size of the files. f1.txt is 5 bytes, f2.txt is 10 bytes, and f3.txt
+is 16 bytes.
+
+To these three files, we need to encrypt and decrypt the file using ECB, CBC, CFB, and OFB. Because
+this is a lot of similar commands being utilized, a script was made to run this session. The script is
+copied below.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t4p1.png}
+    \end{center}{}
+    \caption{task 4 script}
+    \label{fig:t4p1}
+\end{figure}
+
+Figure~\ref{fig:t4p1} shows the script that was used to complete Task 4. The script is a very simple
+bash script which encrypts and decrypted f1.txt, f2.txt, and f3.txt in all of the specified encryption
+schemes.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t4p2.png}
+    \end{center}{}
+    \caption{task 4 script}
+    \label{fig:t4p2}
+\end{figure}
+
+Figure~\ref{fig:t4p2} shows the results of executing the script in Figure~\ref{fig:t4p1}. Notice that
+cfb and ofb kept the file size the same for all three files. CBC and ECB however padded each file  to
+either 16 or 32 bits.
+
+Now to examine how the encryption schemes padded the file.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.62]{t4p3.png}
+    \end{center}{}
+    \caption{file 1 padding results}
+    \label{fig:t4p3}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.62]{t4p4.png}
+    \end{center}{}
+    \caption{file 2 padding results}
+    \label{fig:t4p4}
+\end{figure}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.62]{t4p5.png}
+    \end{center}{}
+    \caption{file 3 padding results}
+    \label{fig:t4p5}
+\end{figure}
+
+
+
+\clearpage
+\subsection{Task 5: Error Propagation – Corrupted Cipher Text}
+To understand the error propagation property of various encryption modes, we would like to do the
+following exercise:
+\begin{enumerate}
+    \item Create a text file that is at least 1000 bytes long.
+    \item Encrypt the file using the AES-128 cipher.
+    \item Unfortunately, a single bit of the 55th byte in the encrypted file got corrupted. You can
+    achieve this corruption using the bless hex editor.
+    \item Decrypt the corrupted ciphertext file using the correct key and IV.
+\end{enumerate}
+\tab Please answer the following question: How much information can you recover by decrypting the
+corrupted file, if the encryption mode is ECB, CBC, CFB, or OFB, respectively? Please answer this
+question before you conduct this task, and then find out whether your answer is correct or wrong after
+you finish this task. Please provide justification.
+
+\subsubsection{Task 5: Solution}
+
+\subsection{Task 6: Initial Vector (IV)}
+\subsubsection{Task 6: Solution}
 
 \end{document}
