@@ -942,10 +942,6 @@ $ xxd p1.txt
 \end{enumerate}
 
 \subsubsection{Task 4: Solution}
-
-The script used for this solution can be found at the following url -
-\url{https://github.com/mitchdz/ECE471/blob/master/lab1/task2-6/t4/t4_commands.sh}.
-
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.65]{t4p0.png}
@@ -954,25 +950,102 @@ The script used for this solution can be found at the following url -
     \label{fig:t4p0}
 \end{figure}
 
-Figure~\ref{fig:t4p0} shows the test files being used in this section. The files are very simple, and
-the linux command used shows the size of the files. f1.txt is 5 bytes, f2.txt is 10 bytes, and f3.txt
-is 16 bytes.
+Figure~\ref{fig:t4p0} shows the test files being used in this section. The files are very simple, and the linux command used shows the size of the files. f1.txt is 5 bytes, f2.txt is 10 bytes, and f3.txt is 16 bytes. Below is what the name of each of the encryption protocols we are using expands to.
 
-To these three files, we need to encrypt and decrypt the file using ECB, CBC, CFB, and OFB. Because
-this is a lot of similar commands being utilized, a script was made to run this session. The script is
-copied below.
+\tab ECB - Electronic CodeBook \\
+\tab CBC - Cipher-Block-Chaining \\
+\tab CFB - Cipher-Feedback \\
+\tab OFB - Output-FeedBack
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.55]{t4p1.png}
-    \end{center}{}
-    \caption{task 4 script}
-    \label{fig:t4p1}
-\end{figure}
 
-Figure~\ref{fig:t4p1} shows the script that was used to complete Task 4. The script is a very simple
-bash script which encrypts and decrypted f1.txt, f2.txt, and f3.txt in all of the specified encryption
-schemes.
+To these three files, we need to encrypt and decrypt the file using ECB, CBC, CFB, and OFB. Because this is a lot of similar commands being utilized, a script was made to run this session. The script is copied below, and can be found in the most current state at \url{https://github.com/mitchdz/ECE471/blob/master/lab1/task2-6/t4/t4_commands.sh}.
+
+\begin{verbatim}
+#!/usr/bin/bash
+KEY="00112233445566778889aabbccddeeff"
+IV="01020304050607081234123412341212"
+ENC_PREF="openssl enc -aes-128-"
+
+CIPHER_PREF="cipher"
+PLAIN_PREF="plain"
+mkdir -p ${CIPHER_PREF}/
+mkdir -p ${PLAIN_PREF}/
+
+#encrypting
+${ENC_PREF}ecb -e -in f1.txt -out ${CIPHER_PREF}/f1_ecb_cipher.txt -K ${KEY}
+${ENC_PREF}ecb -e -in f2.txt -out ${CIPHER_PREF}/f2_ecb_cipher.txt -K ${KEY}
+${ENC_PREF}ecb -e -in f3.txt -out ${CIPHER_PREF}/f3_ecb_cipher.txt -K ${KEY}
+${ENC_PREF}cbc -e -in f1.txt -out ${CIPHER_PREF}/f1_cbc_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}cbc -e -in f2.txt -out ${CIPHER_PREF}/f2_cbc_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}cbc -e -in f3.txt -out ${CIPHER_PREF}/f3_cbc_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}cfb -e -in f1.txt -out ${CIPHER_PREF}/f1_cfb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}cfb -e -in f2.txt -out ${CIPHER_PREF}/f2_cfb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}cfb -e -in f3.txt -out ${CIPHER_PREF}/f3_cfb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}ofb -e -in f1.txt -out ${CIPHER_PREF}/f1_ofb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}ofb -e -in f2.txt -out ${CIPHER_PREF}/f2_ofb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+${ENC_PREF}ofb -e -in f3.txt -out ${CIPHER_PREF}/f3_ofb_cipher.txt -K ${KEY} \
+    -iv ${IV}
+#decrypting
+${ENC_PREF}ecb -d -nopad -in ${CIPHER_PREF}/f1_ecb_cipher.txt \
+    -out ${PLAIN_PREF}/f1_ecb_plain.txt -K ${KEY}
+${ENC_PREF}ecb -d -nopad -in ${CIPHER_PREF}/f1_cbc_cipher.txt \
+    -out ${PLAIN_PREF}/f1_cbc_plain.txt -K ${KEY}
+${ENC_PREF}cfb -d -nopad -in ${CIPHER_PREF}/f1_cfb_cipher.txt \
+    -out ${PLAIN_PREF}/f1_cfb_plain.txt -K ${KEY} -iv ${IV}
+${ENC_PREF}ofb -d -nopad -in ${CIPHER_PREF}/f1_ofb_cipher.txt \
+    -out ${PLAIN_PREF}/f1_ofb_plain.txt -K ${KEY} -iv ${IV}
+
+${ENC_PREF}ecb -d -nopad -in ${CIPHER_PREF}/f2_ecb_cipher.txt \
+    -out ${PLAIN_PREF}/f2_ecb_plain.txt -K ${KEY}
+${ENC_PREF}cbc -d -nopad -in ${CIPHER_PREF}/f2_cbc_cipher.txt \
+    -out ${PLAIN_PREF}/f2_cbc_plain.txt -K ${KEY} -iv ${IV}
+${ENC_PREF}cfb -d -nopad -in ${CIPHER_PREF}/f2_cfb_cipher.txt \
+    -out ${PLAIN_PREF}/f2_cfb_plain.txt -K ${KEY} -iv ${IV}
+${ENC_PREF}ofb -d -nopad -in ${CIPHER_PREF}/f2_ofb_cipher.txt \
+    -out ${PLAIN_PREF}/f2_ofb_plain.txt -K ${KEY} -iv ${IV}
+
+${ENC_PREF}ecb -d -nopad -in ${CIPHER_PREF}/f3_ecb_cipher.txt \
+    -out ${PLAIN_PREF}/f3_ecb_plain.txt -K ${KEY}
+${ENC_PREF}cbc -d -nopad -in ${CIPHER_PREF}/f3_cbc_cipher.txt \
+    -out ${PLAIN_PREF}/f3_cbc_plain.txt -K ${KEY} -iv ${IV}
+${ENC_PREF}cfb -d -nopad -in ${CIPHER_PREF}/f3_cfb_cipher.txt \
+    -out ${PLAIN_PREF}/f3_cfb_plain.txt -K ${KEY} -iv ${IV}
+${ENC_PREF}ofb -d -nopad -in ${CIPHER_PREF}/f3_ofb_cipher.txt \
+    -out ${PLAIN_PREF}/f3_ofb_plain.txt -K ${KEY} -iv ${IV}
+
+#printing out results
+echo "f1.txt"
+printf "plain: "; xxd f1.txt
+printf "ecb  : "; xxd plain/f1_ecb_plain.txt
+printf "cbc  : "; xxd plain/f1_cbc_plain.txt
+printf "cfb  : "; xxd plain/f1_cfb_plain.txt
+printf "ofb  : "; xxd plain/f1_ofb_plain.txt
+
+echo ""
+echo "f2.txt"
+printf "plain: "; xxd f2.txt
+printf "ecb  : "; xxd plain/f2_ecb_plain.txt
+printf "cbc  : "; xxd plain/f2_cbc_plain.txt
+printf "cfb  : "; xxd plain/f2_cfb_plain.txt
+printf "ofb  : "; xxd plain/f2_ofb_plain.txt
+
+echo ""
+echo "f3.txt"
+printf "plain: "; xxd f3.txt
+printf "ecb  : "; xxd plain/f3_ecb_plain.txt
+printf "cbc  : "; xxd plain/f3_cbc_plain.txt
+printf "cfb  : "; xxd plain/f3_cfb_plain.txt
+printf "ofb  : "; xxd plain/f3_ofb_plain.txt
+
+\end{verbatim}
 
 \begin{figure}[H]
     \begin{center}
@@ -982,37 +1055,42 @@ schemes.
     \label{fig:t4p2}
 \end{figure}
 
-Figure~\ref{fig:t4p2} shows the results of executing the script in Figure~\ref{fig:t4p1}. Notice that
-cfb and ofb kept the file size the same for all three files. CBC and ECB however padded each file  to
-either 16 or 32 bits.
+Figure~\ref{fig:t4p2} shows the resulting file sizes after executing the script made to encrypt and decrypt each file without removing the padding. Notice that cfb and ofb kept the file size the same for all three files. CBC and ECB however padded each file to either 16 or 32 bits.
 
-Now to examine how the encryption schemes padded the file.
+Now to examine how the encryption schemes padded the file. Below is what the script outputs when ran from the directory.
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.62]{t4p3.png}
-    \end{center}{}
-    \caption{file 1 padding results}
-    \label{fig:t4p3}
-\end{figure}
+\begin{verbatim}
+mitch@light: ~/git/ECE471/lab1/task2-6/t4 (master) $ ./t4_commands.sh
+f1.txt
+plain: 00000000: 3132 3334 35                             12345
+ecb  : 00000000: 3132 3334 350b 0b0b 0b0b 0b0b 0b0b 0b0b  12345...........
+cbc  : 00000000: 3030 3030 300d 0c03 193f 193f 193f 1919  00000....?.?.?..
+cfb  : 00000000: 3132 3334 35                             12345
+ofb  : 00000000: 3132 3334 35                             12345
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.62]{t4p4.png}
-    \end{center}{}
-    \caption{file 2 padding results}
-    \label{fig:t4p4}
-\end{figure}
+f2.txt
+plain: 00000000: 3132 3334 3531 3233 3435                 1234512345
+ecb  : 00000000: 3132 3334 3531 3233 3435 0606 0606 0606  1234512345......
+cbc  : 00000000: 3132 3334 3531 3233 3435 0606 0606 0606  1234512345......
+cfb  : 00000000: 3132 3334 3531 3233 3435                 1234512345
+ofb  : 00000000: 3132 3334 3531 3233 3435                 1234512345
+
+f3.txt
+plain: 00000000: 3132 3334 3531 3233 3435 3132 3334 3531  1234512345123451
+ecb  : 00000000: 3132 3334 3531 3233 3435 3132 3334 3531  1234512345123451
+       00000010: 1010 1010 1010 1010 1010 1010 1010 1010  ................
+cbc  : 00000000: 3132 3334 3531 3233 3435 3132 3334 3531  1234512345123451
+       00000010: 1010 1010 1010 1010 1010 1010 1010 1010  ................
+cfb  : 00000000: 3132 3334 3531 3233 3435 3132 3334 3531  1234512345123451
+ofb  : 00000000: 3132 3334 3531 3233 3435 3132 3334 3531  1234512345123451
+\end{verbatim}
 
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.62]{t4p5.png}
-    \end{center}{}
-    \caption{file 3 padding results}
-    \label{fig:t4p5}
-\end{figure}
+As shown by the size of each file in the results of the bash script, OFB and CFB did not increase the size of the resulting plaintext, so the results shown in Figure~\ref{fig:t4p2} are as expected. However, ecb and cbc both padded the values to 16 bits, padding with the value `0b` over and over. The decimal equivalent of hex 0b is 11, which happens to be exactly the number of bytes that were used to pad the message! PKCS#5 pads the message repeatedly with the number of bytes required to pad the message.
 
+f2.txt, the 10 byte file, has very similar results as f1.txt, however the major difference is the extra data is `0606` repeating. `06` in decimal is 6 which is the number of bytes added to the padding!
+
+f3.txt, the 16 byte file, has very similar results as f1.txt and f2.txt, however the major difference is the extra data is an entire 16 bytes of `1010` repeating. It may seem fair to assume that no paddin gshould be done for ecb and cbc for this message because the message is 16 bytes. However, if the message itself ends with cewrtain bits that may look like it is being padded, part of the message may be lost. Therefore, the message is padded to the next multiple of 2 bytes, 32 bytes.
 
 
 \clearpage
