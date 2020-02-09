@@ -215,19 +215,17 @@ The related plaintext is shown below using the final (substitution) key `abcdefg
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[scale=0.5]{c23.png}
+        \begin{verbatim}
+                    $ tr ’abcdefghijklmnopqrstuvwxyz’ \
+                         ’CFMYPVBRLQXWIEJDSGKHNAZOTU’ \
+                         < ciphertext.txt > plaintext.txt
+        \end{verbatim}
     \end{center}{}
     \caption{Command to convert ciphertext to plaintext}
     \label{fig:c23}
 \end{figure}
 
-Figure~\ref{fig:c23} shows the linux command used to convert the ciphertex that was shown into the accompanying plaintext. For ease of copying, the command is also shown below.
-
-\begin{verbatim}
-$ tr ’abcdefghijklmnopqrstuvwxyz’ \
-     ’CFMYPVBRLQXWIEJDSGKHNAZOTU’ \
-     < ciphertext.txt > plaintext.txt
-\end{verbatim}
+Figure~\ref{fig:c23} shows the Linux command that is used in order to convert the ciphertext to the following plaintext.
 
 \begin{verbatim}
 THE OSCARS TURN  ON SUNDAY WHICH SEEMS ABOUT RIGHT AFTER THIS LONG STRANGE
@@ -1131,6 +1129,16 @@ of aviation,
 
 The first  9 lines of the bee movie are shown using the Linux `head` command.
 
+Now the bee movie needs to be encrypted and decrypted using ECB, CBC, CFB, and OFB, then to see how much corrupting one bit changes the resulting plaintext when decrypted. 
+
+Predictions: \\
+    \tab ECB - not much change, mainly because the lack of difussion as shown in the previous tasks. \\
+    \tab CBC - Not much change, simply because the algorithm is similar to ECB and works byte by byte, so the area where the bit is changed should look a lot different, but not the entire ciphertext.
+    \tab CFB - A lot of change. CFB stands for Cipher Feedback, so the preceding blocks effect the future blocks.
+    \tab OFB - A lot of change, similar to CFB. Same reasoning for CFB.
+
+The procedure will be shown for CBC only, but know tha the procedure is the exact same for ECB, CBC, CFB, and OFB.
+
 \begin{verbatim}
 $ openssl enc -aes-128-cbc -e -in bee_movie.txt -out cipher.bin \
     -K 00112233445566778889aabbccddeeff \
@@ -1139,12 +1147,148 @@ $ openssl enc -aes-128-cbc -e -in bee_movie.txt -out cipher.bin \
 
 The preceding command creates a file named cipher.bin. which is the encrypted file of the bee movie. Let's mess up a bit in the 55th byte of the bee movie now.
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.25]{t5p1.png}
+    \end{center}{}
+    \caption{bless editor showing bee movie encrypted with cbc}
+    \label{fig:t5p1}
+\end{figure}
 
-0xE8 is 232 in decimal. Let's change that value to 231 (1 bit off) so byte 55 will now be 
+
+Figure ~\ref{fig:t5p1} shows the bless hex editor viewing the bee movie encrypted using aes-128-cbc.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{t5p1.1.png}
+    \end{center}{}
+    \caption{bless editor showing the offset}
+    \label{fig:t5p1.1}
+\end{figure}
+
+Figure~\ref{fig:t5p1.1} shows Figure~\ref{fig:t5p1} zoomed in on the bottom right, where the bless hex editor shows the offset that your cursor is at. The offest is 0x37 because 0x37 in hex refers to 55 in decimal. 
+
+0xE8 is at position 0x37 in bless, and 0xE8 is 232 in decimal. Let's change that value to 231, so that value is changed to E7 as shown in the following picture.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{t5p3.png}
+    \end{center}{}
+    \caption{Bless editor showing modified value at byte 0x37}
+    \label{fig:t5p3}
+\end{figure}
+
+Figure~\ref{fig:t5p3} clearly shows the value is now E7. To save the file, press ctrl + c, and the file is saved! Now we need to decrypt the file. The following command is used in order to decrypt the file.
+
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -d -in cipher.bin -out cbc_scrambled.txt \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 01020304050607081234123412341212
+\end{verbatim}
 
 
+Now the head of each file is shown below.
 
+
+\textbf{ECB:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Scri#��>$�'��BA96�anscript
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+\textbf{CBC:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Scri�)W�H�w/�,1���anscrip{
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+\textbf{CFB (shown as picture):}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.4]{t5p4.png}
+    \end{center}{}
+    \caption{Output of the plaintext after corrupting a bit using CFB}
+    \label{fig:t5p4}
+\end{figure}
+
+\textbf{OFB:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Script - Diflogue Transcript
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+Therefore, 3/4 of my predictions were correct! Figure~\ref{fig:t5p4} is shown as a picture because copying those characters broke LaTeX. Only CFB was majorly messed up. I was very surprised that OFB was not messed up because it is a stream cipher. This is because even though OFB is a cipher, the algorithm works like CBC/ECB because OFB streams the text BEFORE it is ciphertext. CFB encrypts the block and then pushes it through the stream. More information is found here on wikipedia \url{https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Feedback_(CFB)}.
+
+\clearpage
 \subsection{Task 6: Initial Vector (IV)}
+
+Most of the encryption modes require an initial vector (IV). Properties of an IV depend on the cryptographic scheme used. If we are not careful in selecting IVs, the data encrypted by us may not be secure at all, even though we are using a secure encryption algorithm and mode. The objective of this task is to help students understand the problems if an IV is not selected properly. Please do the following experiments:
+
+\begin{itemize}
+    \item \textbf{Task 6.1.} A basic requirement for IV is uniqueness, which means that no IV may be reused under the same key. To understand why, please encrypt the same plaintext using (1) two different IVs, and (2) the same IV. Please describe your observation, based on which, explain why IV needs to be unique.
+    \item \textbf{Task 6.2.} One may argue that if the plaintext does not repeat, using the same IV is safe. Let us look at the Output Feedback (OFB) mode. Assume that the attacker gets hold of a plaintext (P1) and a ciphertext (C1) , can he/she decrypt other encrypted messages if the IV is always the same? You are given the following information, please try to figure out the actual content of P2 based on C2, P1, and C1.
+    
+    \begin{verbatim}
+    Plaintext (P1): This is a known message!
+    Ciphertext (C1): a469b1c502c1cab966965e50425438e1bb1b5f9037a4c159
+    Plaintext (P2): (unknown to you)
+    Ciphertext (C2): bf73bcd3509299d566c35b5d450337e1bb175f903fafc159
+    \end{verbatim}
+        
+    If we replace OFB in this experiment with CFB (Cipher Feedback), how much of P2 can be revealed? You only need to answer the question; there is no need to demonstrate that.
+    
+    The attack used in this experiment is called the known-plaintext attack, which is an attack model for cryptanalysis where the attacker has access to both the plaintext and its encrypted version (ciphertext). If this can lead to the revealing of further secret information, the encryption scheme is not considered as secure.
+    
+    \item \textbf{Task 6.3.} From the previous tasks, we now know that IVs cannot repeat. Another important requirement on IV is that IVs need to be unpredictable for many schemes, i.e., IVs need to be randomly generated. In this task, we will see what is going to happen if IVs are predictable.
+    
+    Assume that Bob just sent out an encrypted message, and Eve knows that its content is either Yes or No; Eve can see the ciphertext and the IV used to encrypt the message, but since the encryption algorithm AES is quite strong, Eve has no idea what the actual content is. However, since Bob uses predictable IVs, Eve knows exactly what IV Bob is going to use next. The following summarizes what Bob and Eve know:
+    
+    \begin{verbatim}
+    Encryption method: 128-bit AES with CBC mode.
+    Key (in hex): 00112233445566778899aabbccddeeff (known only to Bob)
+    Ciphertext (C1): bef65565572ccee2a9f9553154ed9498 (known to both)
+    IV used on P1 (known to both)
+        (in ascii): 1234567890123456
+        (in hex)  : 31323334353637383930313233343536
+    Next IV (known to both)
+        (in ascii): 1234567890123457
+        (in hex)  : 31323334353637383930313233343537
+    \end{verbatim}
+    
+    A good cipher should not only tolerate the known-plaintext attack described previously, it should also tolerate the chosen-plaintext attack, which is an attack model for cryptanalysis where the attacker can obtain the ciphertext for an arbitrary plaintext. Since AES is a strong cipher that can tolerate the chosen-plaintext attack, Bob does not mind encrypting any plaintext given by Eve; he does use a different IV for each plaintext, but unfortunately, the IVs he generates are not random, and they can always be predictable.
+    
+    Your job is to construct a message P2 and ask Bob to encrypt it and give you the ciphertext. Your objective is to use this opportunity to figure out whether the actual content of P1 is Yes or No. You can read this Wikipedia page for ideas: \url{https://en.wikipedia.org/wiki/Initialization_vector}.
+\end{itemize}
+
+    \tab There are more advanced cryptanalysis on IV that is beyond the scope of this lab. Students can read the article posted in this URL: \url{https://defuse.ca/cbcmodeiv.htm}. Because the requirements on IV really depend on cryptographic schemes, it is hard to remember what properties should be maintained when we select an IV. However, we will be safe if we always use a new IV for each encryption, and the new IV needs to be generated using a good pseudo random number generator, so it is unpredictable by adversaries. See another SEED labs (Random Number Generation Lab) for details on how to generate cryptographically strong pseudo random numbers.
+
 \subsubsection{Task 6: Solution}
+\textbf{Task 6.1. Solution}
+
+
+
+\textbf{Task 6.2. Solution}
+
+
+
+\textbf{Task 6.3. Solution}
 
 \end{document}
