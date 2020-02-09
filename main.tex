@@ -211,105 +211,109 @@ pmhnayxh vup vevhy bhxc vhrx cxfmnq ytvy ivup gnqy emayzhn lmytxzy viqx
 nvhumur gnqy pmhnayxh uxcmuvymxuq vhn bnl vup bvh gnylnnu
 \end{verbatim}
 
-The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to
-`cfmypvbrlqxwiejdsgkhnazotu`. The process to derive this key is outlined below with accompanying pictures.
+The related plaintext is shown below using the final (substitution) key `abcdefghijklmnopqrstuvwxyz` to `CFMYPVBRLQXWIEJDSGKHNAZOTU`. The process to derive this key is outlined below with accompanying pictures.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[scale=0.5]{c23.png}
+        \begin{verbatim}
+                    $ tr ’abcdefghijklmnopqrstuvwxyz’ \
+                         ’CFMYPVBRLQXWIEJDSGKHNAZOTU’ \
+                         < ciphertext.txt > plaintext.txt
+        \end{verbatim}
     \end{center}{}
     \caption{Command to convert ciphertext to plaintext}
     \label{fig:c23}
 \end{figure}
 
-Figure~\ref{fig:c23} shows the linux command used to convert the ciphertex that was shown into the accompanying
-plaintext.
+Figure~\ref{fig:c23} shows the Linux command that is used in order to convert the ciphertext to the following plaintext.
 
 \begin{verbatim}
-the oscars turn  on sunday which seems about right after this long strange
-awards trip the bagger feels like a nonagenarian too
+THE OSCARS TURN  ON SUNDAY WHICH SEEMS ABOUT RIGHT AFTER THIS LONG STRANGE
+AWARDS TRIP THE BAGGER FEELS LIKE A NONAGENARIAN TOO
 
-the awards race was bookended by the demise of harvey weinstein at its outset
-and the apparent implosion of his film company at the end and it was shaped by
-the emergence of metoo times up blackgown politics armcandy activism and
-a national conversation as brief and mad as a fever dream about whether there
-ought to be a president winfrey the season didnt just seem extra long it was
-extra long because the oscars were moved to the first weekend in march to
-avoid conflicting with the closing ceremony of the winter olympics thanks
-pyeongchang
+THE AWARDS RACE WAS BOOKENDED BY THE DEMISE OF HARVEY WEINSTEIN AT ITS OUTSET
+AND THE APPARENT IMPLOSION OF HIS FILM COMPANY AT THE END AND IT WAS SHAPED BY
+THE EMERGENCE OF METOO TIMES UP BLACKGOWN POLITICS ARMCANDY ACTIVISM AND
+A NATIONAL CONVERSATION AS BRIEF AND MAD AS A FEVER DREAM ABOUT WHETHER THERE
+OUGHT TO BE A PRESIDENT WINFREY THE SEASON DIDNT JUST SEEM EXTRA LONG IT WAS
+EXTRA LONG BECAUSE THE OSCARS WERE MOVED TO THE FIRST WEEKEND IN MARCH TO
+AVOID CONFLICTING WITH THE CLOSING CEREMONY OF THE WINTER OLYMPICS THANKS
+PYEONGCHANG
 
-one big question surrounding this years academy awards is how or if the
-ceremony will address metoo especially after the golden globes which became
-a jubilant comingout party for times up the movement spearheaded by 
-powerful hollywood women who helped raise millions of dollars to fight sexual
-harassment around the country
+ONE BIG QUESTION SURROUNDING THIS YEARS ACADEMY AWARDS IS HOW OR IF THE
+CEREMONY WILL ADDRESS METOO ESPECIALLY AFTER THE GOLDEN GLOBES WHICH BECAME
+A JUBILANT COMINGOUT PARTY FOR TIMES UP THE MOVEMENT SPEARHEADED BY 
+POWERFUL HOLLYWOOD WOMEN WHO HELPED RAISE MILLIONS OF DOLLARS TO FIGHT SEXUAL
+HARASSMENT AROUND THE COUNTRY
 
-signaling their support golden globes attendees swathed themselves in black
-sported lapel pins and sounded off about sexist power imbalances from the red
-carpet and the stage on the air e was called out about pay inequity after
-its former anchor catt sadler quit once she learned that she was making far
-less than a male cohost and during the ceremony natalie portman took a blunt
-and satisfying dig at the allmale roster of nominated directors how could
-that be topped
+SIGNALING THEIR SUPPORT GOLDEN GLOBES ATTENDEES SWATHED THEMSELVES IN BLACK
+SPORTED LAPEL PINS AND SOUNDED OFF ABOUT SEXIST POWER IMBALANCES FROM THE RED
+CARPET AND THE STAGE ON THE AIR E WAS CALLED OUT ABOUT PAY INEQUITY AFTER
+ITS FORMER ANCHOR CATT SADLER QUIT ONCE SHE LEARNED THAT SHE WAS MAKING FAR
+LESS THAN A MALE COHOST AND DURING THE CEREMONY NATALIE PORTMAN TOOK A BLUNT
+AND SATISFYING DIG AT THE ALLMALE ROSTER OF NOMINATED DIRECTORS HOW COULD
+THAT BE TOPPED
 
-as it turns out at least in terms of the oscars it probably wont be
+AS IT TURNS OUT AT LEAST IN TERMS OF THE OSCARS IT PROBABLY WONT BE
 
-women involved in times up said that although the globes signified the
-initiatives launch they never intended it to be just an awards season
-campaign or one that became associated only with redcarpet actions instead
-a spokeswoman said the group is working behind closed doors and has since
-amassed  million for its legal defense fund which after the globes was
-flooded with thousands of donations of  or less from people in some 
-countries
+WOMEN INVOLVED IN TIMES UP SAID THAT ALTHOUGH THE GLOBES SIGNIFIED THE
+INITIATIVES LAUNCH THEY NEVER INTENDED IT TO BE JUST AN AWARDS SEASON
+CAMPAIGN OR ONE THAT BECAME ASSOCIATED ONLY WITH REDCARPET ACTIONS INSTEAD
+A SPOKESWOMAN SAID THE GROUP IS WORKING BEHIND CLOSED DOORS AND HAS SINCE
+AMASSED  MILLION FOR ITS LEGAL DEFENSE FUND WHICH AFTER THE GLOBES WAS
+FLOODED WITH THOUSANDS OF DONATIONS OF  OR LESS FROM PEOPLE IN SOME 
+COUNTRIES
 
 
-no call to wear black gowns went out in advance of the oscars though the
-movement will almost certainly be referenced before and during the ceremony 
-especially since vocal metoo supporters like ashley judd laura dern and
-nicole kidman are scheduled presenters
+NO CALL TO WEAR BLACK GOWNS WENT OUT IN ADVANCE OF THE OSCARS THOUGH THE
+MOVEMENT WILL ALMOST CERTAINLY BE REFERENCED BEFORE AND DURING THE CEREMONY 
+ESPECIALLY SINCE VOCAL METOO SUPPORTERS LIKE ASHLEY JUDD LAURA DERN AND
+NICOLE KIDMAN ARE SCHEDULED PRESENTERS
 
-another feature of this season no one really knows who is going to win best
-picture arguably this happens a lot of the time inarguably the nailbiter
-narrative only serves the awards hype machine but often the people forecasting
-the race socalled oscarologists can make only educated guesses
+ANOTHER FEATURE OF THIS SEASON NO ONE REALLY KNOWS WHO IS GOING TO WIN BEST
+PICTURE ARGUABLY THIS HAPPENS A LOT OF THE TIME INARGUABLY THE NAILBITER
+NARRATIVE ONLY SERVES THE AWARDS HYPE MACHINE BUT OFTEN THE PEOPLE FORECASTING
+THE RACE SOCALLED OSCAROLOGISTS CAN MAKE ONLY EDUCATED GUESSES
 
-the way the academy tabulates the big winner doesnt help in every other
-category the nominee with the most votes wins but in the best picture
-category voters are asked to list their top movies in preferential order if a
-movie gets more than  percent of the firstplace votes it wins when no
-movie manages that the one with the fewest firstplace votes is eliminated and
-its votes are redistributed to the movies that garnered the eliminated ballots
-secondplace votes and this continues until a winner emerges
+THE WAY THE ACADEMY TABULATES THE BIG WINNER DOESNT HELP IN EVERY OTHER
+CATEGORY THE NOMINEE WITH THE MOST VOTES WINS BUT IN THE BEST PICTURE
+CATEGORY VOTERS ARE ASKED TO LIST THEIR TOP MOVIES IN PREFERENTIAL ORDER IF A
+MOVIE GETS MORE THAN  PERCENT OF THE FIRSTPLACE VOTES IT WINS WHEN NO
+MOVIE MANAGES THAT THE ONE WITH THE FEWEST FIRSTPLACE VOTES IS ELIMINATED AND
+ITS VOTES ARE REDISTRIBUTED TO THE MOVIES THAT GARNERED THE ELIMINATED BALLOTS
+SECONDPLACE VOTES AND THIS CONTINUES UNTIL A WINNER EMERGES
 
-it is all terribly confusing but apparently the consensus favorite comes out
-ahead in the end this means that endofseason awards chatter invariably
-involves tortured speculation about which film would most likely be voters
-second or third favorite and then equally tortured conclusions about which
-film might prevail
+IT IS ALL TERRIBLY CONFUSING BUT APPARENTLY THE CONSENSUS FAVORITE COMES OUT
+AHEAD IN THE END THIS MEANS THAT ENDOFSEASON AWARDS CHATTER INVARIABLY
+INVOLVES TORTURED SPECULATION ABOUT WHICH FILM WOULD MOST LIKELY BE VOTERS
+SECOND OR THIRD FAVORITE AND THEN EQUALLY TORTURED CONCLUSIONS ABOUT WHICH
+FILM MIGHT PREVAIL
 
-in  it was a tossup between boyhood and the eventual winner birdman
-in  with lots of experts betting on the revenant or the big short the
-prize went to spotlight last year nearly all the forecasters declared la
-la land the presumptive winner and for two and a half minutes they were
-correct before an envelope snafu was revealed and the rightful winner
-moonlight was crowned
+IN  IT WAS A TOSSUP BETWEEN BOYHOOD AND THE EVENTUAL WINNER BIRDMAN
+IN  WITH LOTS OF EXPERTS BETTING ON THE REVENANT OR THE BIG SHORT THE
+PRIZE WENT TO SPOTLIGHT LAST YEAR NEARLY ALL THE FORECASTERS DECLARED LA
+LA LAND THE PRESUMPTIVE WINNER AND FOR TWO AND A HALF MINUTES THEY WERE
+CORRECT BEFORE AN ENVELOPE SNAFU WAS REVEALED AND THE RIGHTFUL WINNER
+MOONLIGHT WAS CROWNED
 
-this year awards watchers are unequally divided between three billboards
-outside ebbing missouri the favorite and the shape of water which is
-the baggers prediction with a few forecasting a hail mary win for get out
+THIS YEAR AWARDS WATCHERS ARE UNEQUALLY DIVIDED BETWEEN THREE BILLBOARDS
+OUTSIDE EBBING MISSOURI THE FAVORITE AND THE SHAPE OF WATER WHICH IS
+THE BAGGERS PREDICTION WITH A FEW FORECASTING A HAIL MARY WIN FOR GET OUT
 
-but all of those films have historical oscarvoting patterns against them the
-shape of water has  nominations more than any other film and was also
-named the years best by the producers and directors guilds yet it was not
-nominated for a screen actors guild award for best ensemble and no film has
-won best picture without previously landing at least the actors nomination
-since braveheart in  this year the best ensemble sag ended up going to
-three billboards which is significant because actors make up the academys
-largest branch that film while divisive also won the best drama golden globe
-and the bafta but its filmmaker martin mcdonagh was not nominated for best
-director and apart from argo movies that land best picture without also
-earning best director nominations are few and far between
+BUT ALL OF THOSE FILMS HAVE HISTORICAL OSCARVOTING PATTERNS AGAINST THEM THE
+SHAPE OF WATER HAS  NOMINATIONS MORE THAN ANY OTHER FILM AND WAS ALSO
+NAMED THE YEARS BEST BY THE PRODUCERS AND DIRECTORS GUILDS YET IT WAS NOT
+NOMINATED FOR A SCREEN ACTORS GUILD AWARD FOR BEST ENSEMBLE AND NO FILM HAS
+WON BEST PICTURE WITHOUT PREVIOUSLY LANDING AT LEAST THE ACTORS NOMINATION
+SINCE BRAVEHEART IN  THIS YEAR THE BEST ENSEMBLE SAG ENDED UP GOING TO
+THREE BILLBOARDS WHICH IS SIGNIFICANT BECAUSE ACTORS MAKE UP THE ACADEMYS
+LARGEST BRANCH THAT FILM WHILE DIVISIVE ALSO WON THE BEST DRAMA GOLDEN GLOBE
+AND THE BAFTA BUT ITS FILMMAKER MARTIN MCDONAGH WAS NOT NOMINATED FOR BEST
+DIRECTOR AND APART FROM ARGO MOVIES THAT LAND BEST PICTURE WITHOUT ALSO
+EARNING BEST DIRECTOR NOMINATIONS ARE FEW AND FAR BETWEEN
 \end{verbatim}
+
+Now that the accompanying plaintext with the ciphertext is shown, the process to find the key is shown. 
 
 After the ciphertext is copied, a program is utilized that is supplied by cryptoclub.org. The domain is shown below.
 
@@ -1104,14 +1108,187 @@ following exercise:
     achieve this corruption using the bless hex editor.
     \item Decrypt the corrupted ciphertext file using the correct key and IV.
 \end{enumerate}
-\tab Please answer the following question: How much information can you recover by decrypting the
-corrupted file, if the encryption mode is ECB, CBC, CFB, or OFB, respectively? Please answer this
-question before you conduct this task, and then find out whether your answer is correct or wrong after
-you finish this task. Please provide justification.
+\tab Please answer the following question: How much information can you recover by decrypting the corrupted file, if the encryption mode is ECB, CBC, CFB, or OFB, respectively? Please answer this question before you conduct this task, and then find out whether your answer is correct or wrong after you finish this task. Please provide justification.
 
 \subsubsection{Task 5: Solution}
 
+In order to create a file of at least 1000 bytes long, the only obvious choice was to use the bee movie. The file is found at this location - \url{https://github.com/mitchdz/ECE471/blob/master/lab1/task2-6/t5/bee_movie.txt}. The bee movie turns out to be 55394 bytes which is a lot more than 1000. Now the script needs to be encrypted using 128 bit AES. For this task, cbc is used.
+
+\begin{verbatim}
+mitch@light: ~/git/ECE471/lab1/task2-6/t5 (master) $ head bee_movie.txt
+HOME
+The Entire Bee Movie Script
+
+Bee Movie Script - Dialogue Transcript
+
+
+According to all known laws
+of aviation,
+
+\end{verbatim}
+
+The first  9 lines of the bee movie are shown using the Linux `head` command.
+
+Now the bee movie needs to be encrypted and decrypted using ECB, CBC, CFB, and OFB, then to see how much corrupting one bit changes the resulting plaintext when decrypted. 
+
+Predictions: \\
+    \tab ECB - not much change, mainly because the lack of difussion as shown in the previous tasks. \\
+    \tab CBC - Not much change, simply because the algorithm is similar to ECB and works byte by byte, so the area where the bit is changed should look a lot different, but not the entire ciphertext.
+    \tab CFB - A lot of change. CFB stands for Cipher Feedback, so the preceding blocks effect the future blocks.
+    \tab OFB - A lot of change, similar to CFB. Same reasoning for CFB.
+
+The procedure will be shown for CBC only, but know tha the procedure is the exact same for ECB, CBC, CFB, and OFB.
+
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -e -in bee_movie.txt -out cipher.bin \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 01020304050607081234123412341212
+\end{verbatim}
+
+The preceding command creates a file named cipher.bin. which is the encrypted file of the bee movie. Let's mess up a bit in the 55th byte of the bee movie now.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.25]{t5p1.png}
+    \end{center}{}
+    \caption{bless editor showing bee movie encrypted with cbc}
+    \label{fig:t5p1}
+\end{figure}
+
+
+Figure ~\ref{fig:t5p1} shows the bless hex editor viewing the bee movie encrypted using aes-128-cbc.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{t5p1.1.png}
+    \end{center}{}
+    \caption{bless editor showing the offset}
+    \label{fig:t5p1.1}
+\end{figure}
+
+Figure~\ref{fig:t5p1.1} shows Figure~\ref{fig:t5p1} zoomed in on the bottom right, where the bless hex editor shows the offset that your cursor is at. The offest is 0x37 because 0x37 in hex refers to 55 in decimal. 
+
+0xE8 is at position 0x37 in bless, and 0xE8 is 232 in decimal. Let's change that value to 231, so that value is changed to E7 as shown in the following picture.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{t5p3.png}
+    \end{center}{}
+    \caption{Bless editor showing modified value at byte 0x37}
+    \label{fig:t5p3}
+\end{figure}
+
+Figure~\ref{fig:t5p3} clearly shows the value is now E7. To save the file, press ctrl + c, and the file is saved! Now we need to decrypt the file. The following command is used in order to decrypt the file.
+
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -d -in cipher.bin -out cbc_scrambled.txt \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 01020304050607081234123412341212
+\end{verbatim}
+
+
+Now the head of each file is shown below.
+
+
+\textbf{ECB:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Scri#��>$�'��BA96�anscript
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+\textbf{CBC:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Scri�)W�H�w/�,1���anscrip{
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+\textbf{CFB (shown as picture):}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.4]{t5p4.png}
+    \end{center}{}
+    \caption{Output of the plaintext after corrupting a bit using CFB}
+    \label{fig:t5p4}
+\end{figure}
+
+\textbf{OFB:}
+\begin{verbatim}
+    HOME
+    The Entire Bee Movie Script
+    
+    Bee Movie Script - Diflogue Transcript
+    
+    
+    According to all known laws
+    of aviation,
+\end{verbatim}
+
+Therefore, 3/4 of my predictions were correct! Figure~\ref{fig:t5p4} is shown as a picture because copying those characters broke LaTeX. Only CFB was majorly messed up. I was very surprised that OFB was not messed up because it is a stream cipher. This is because even though OFB is a cipher, the algorithm works like CBC/ECB because OFB streams the text BEFORE it is ciphertext. CFB encrypts the block and then pushes it through the stream. More information is found here on wikipedia \url{https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Feedback_(CFB)}.
+
+\clearpage
 \subsection{Task 6: Initial Vector (IV)}
+
+Most of the encryption modes require an initial vector (IV). Properties of an IV depend on the cryptographic scheme used. If we are not careful in selecting IVs, the data encrypted by us may not be secure at all, even though we are using a secure encryption algorithm and mode. The objective of this task is to help students understand the problems if an IV is not selected properly. Please do the following experiments:
+
+\begin{itemize}
+    \item \textbf{Task 6.1.} A basic requirement for IV is uniqueness, which means that no IV may be reused under the same key. To understand why, please encrypt the same plaintext using (1) two different IVs, and (2) the same IV. Please describe your observation, based on which, explain why IV needs to be unique.
+    \item \textbf{Task 6.2.} One may argue that if the plaintext does not repeat, using the same IV is safe. Let us look at the Output Feedback (OFB) mode. Assume that the attacker gets hold of a plaintext (P1) and a ciphertext (C1) , can he/she decrypt other encrypted messages if the IV is always the same? You are given the following information, please try to figure out the actual content of P2 based on C2, P1, and C1.
+    
+    \begin{verbatim}
+    Plaintext (P1): This is a known message!
+    Ciphertext (C1): a469b1c502c1cab966965e50425438e1bb1b5f9037a4c159
+    Plaintext (P2): (unknown to you)
+    Ciphertext (C2): bf73bcd3509299d566c35b5d450337e1bb175f903fafc159
+    \end{verbatim}
+        
+    If we replace OFB in this experiment with CFB (Cipher Feedback), how much of P2 can be revealed? You only need to answer the question; there is no need to demonstrate that.
+    
+    The attack used in this experiment is called the known-plaintext attack, which is an attack model for cryptanalysis where the attacker has access to both the plaintext and its encrypted version (ciphertext). If this can lead to the revealing of further secret information, the encryption scheme is not considered as secure.
+    
+    \item \textbf{Task 6.3.} From the previous tasks, we now know that IVs cannot repeat. Another important requirement on IV is that IVs need to be unpredictable for many schemes, i.e., IVs need to be randomly generated. In this task, we will see what is going to happen if IVs are predictable.
+    
+    Assume that Bob just sent out an encrypted message, and Eve knows that its content is either Yes or No; Eve can see the ciphertext and the IV used to encrypt the message, but since the encryption algorithm AES is quite strong, Eve has no idea what the actual content is. However, since Bob uses predictable IVs, Eve knows exactly what IV Bob is going to use next. The following summarizes what Bob and Eve know:
+    
+    \begin{verbatim}
+    Encryption method: 128-bit AES with CBC mode.
+    Key (in hex): 00112233445566778899aabbccddeeff (known only to Bob)
+    Ciphertext (C1): bef65565572ccee2a9f9553154ed9498 (known to both)
+    IV used on P1 (known to both)
+        (in ascii): 1234567890123456
+        (in hex)  : 31323334353637383930313233343536
+    Next IV (known to both)
+        (in ascii): 1234567890123457
+        (in hex)  : 31323334353637383930313233343537
+    \end{verbatim}
+    
+    A good cipher should not only tolerate the known-plaintext attack described previously, it should also tolerate the chosen-plaintext attack, which is an attack model for cryptanalysis where the attacker can obtain the ciphertext for an arbitrary plaintext. Since AES is a strong cipher that can tolerate the chosen-plaintext attack, Bob does not mind encrypting any plaintext given by Eve; he does use a different IV for each plaintext, but unfortunately, the IVs he generates are not random, and they can always be predictable.
+    
+    Your job is to construct a message P2 and ask Bob to encrypt it and give you the ciphertext. Your objective is to use this opportunity to figure out whether the actual content of P1 is Yes or No. You can read this Wikipedia page for ideas: \url{https://en.wikipedia.org/wiki/Initialization_vector}.
+\end{itemize}
+
+    \tab There are more advanced cryptanalysis on IV that is beyond the scope of this lab. Students can read the article posted in this URL: \url{https://defuse.ca/cbcmodeiv.htm}. Because the requirements on IV really depend on cryptographic schemes, it is hard to remember what properties should be maintained when we select an IV. However, we will be safe if we always use a new IV for each encryption, and the new IV needs to be generated using a good pseudo random number generator, so it is unpredictable by adversaries. See another SEED labs (Random Number Generation Lab) for details on how to generate cryptographically strong pseudo random numbers.
+
 \subsubsection{Task 6: Solution}
+\textbf{Task 6.1. Solution}
+
+
+
+\textbf{Task 6.2. Solution}
+
+
+
+\textbf{Task 6.3. Solution}
 
 \end{document}
