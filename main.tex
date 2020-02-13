@@ -1280,15 +1280,134 @@ Most of the encryption modes require an initial vector (IV). Properties of an IV
 
     \tab There are more advanced cryptanalysis on IV that is beyond the scope of this lab. Students can read the article posted in this URL: \url{https://defuse.ca/cbcmodeiv.htm}. Because the requirements on IV really depend on cryptographic schemes, it is hard to remember what properties should be maintained when we select an IV. However, we will be safe if we always use a new IV for each encryption, and the new IV needs to be generated using a good pseudo random number generator, so it is unpredictable by adversaries. See another SEED labs (Random Number Generation Lab) for details on how to generate cryptographically strong pseudo random numbers.
 
-\subsubsection{Task 6: Solution}
-\textbf{Task 6.1. Solution}
+\subsubsection{Task 6.1: Solution}
 
+The plaintext is created using the Linux command echo, and then redirecting the output to a file.
 
+\begin{verbatim}
+$ echo "hello, I am a plaintext!" > plain.txt
+\end{verbatim}
 
-\textbf{Task 6.2. Solution}
+file 1.bin, 2.bin, and 3.bin are created in the following fashion:
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -e -in plain.txt -out 1.bin \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 01020304050607081234123412341212
+\end{verbatim}
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -e -in plain.txt -out 2.bin \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 01020304050607081234123412341212
+\end{verbatim}
+\begin{verbatim}
+$ openssl enc -aes-128-cbc -e -in plain.txt -out 3.bin \
+    -K 00112233445566778889aabbccddeeff \
+    -iv 00000000000000000000000000000000
+\end{verbatim}
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t6p0.png}
+    \end{center}{}
+    \caption{Output of the three binary files from Task 2.6.1}
+    \label{fig:t6p0}
+\end{figure}
 
+Figure ~\ref{fig:t6p0} shows the output of 1.bin, 2.bin, and 3.bin. 1.bin & 2.bin both used the same IV, whereas 3.bin used a different IV. It is apparent that 1.bin and 2.bin are the exact same file, which shows that using the same IV will result in the same ciphertext. This means that the ciphertext is repeatable, and if the same IV is used multiple times, it may be possible to determine what the IV is.
+\clearpage
+\subsubsection{Task 6.2: Solution}
 
-\textbf{Task 6.3. Solution}
+In order to accomplish this task, the website \url{http://xor.pw/#} was used.
+
+Output Feedback (OFB) is a stream cipher which relies heavily on XORing plaintext blocks with the key and an IV. If an IV and the key are the same for different plaintexts, it is trivial to decrypt P2 while utilizing a known-plaintext attack. The theory is outlined below:
+
+\centering
+K = P1 \bigoplus C1\\
+P2 = K \bigoplus C2
+
+\raggedright 
+ 
+Let's see how well this theory holds up!
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t6p2.1.png}
+    \end{center}{}
+    \caption{Task 6.2: Finding K}
+    \label{fig:t6p2.1}
+\end{figure}
+
+Figure~\ref{fig:t6p2.1} shows using \url{http://xor.pw/#} in order to calculate what K is. This website is great because we can directly XOR between ascii and hex, so there's no need to convert P1 to hex with another program first. The same operation is shown below in a format that is copy-able.
+
+\begin{verbatim}
+    This is a known message!                         (ascii)
+XOR a469b1c502c1cab966965e50425438e1bb1b5f9037a4c159 (hex)
+    ------------------------------------------------
+    f001d8b622a8b99907b6353e2d2356c1d67e2ce356c3a478 (hex)
+\end{verbatim}
+
+Therefore, the key, K, is f001d8b622a8b99907b6353e2d2356c1d67e2ce356c3a478. Finding the plaintext associated with C2 is then trivial using the following operation.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t6p2.2.png}
+    \end{center}{}
+    \caption{Task 6.2: Decrypting C2}
+    \label{fig:t6p2.2}
+\end{figure}
+
+Figure~\ref{fig:t6p2.2} shows deciphering C2 using the key found from Figure~\ref{fig:t6p2.1}! The resulting string is "Order: Launch a missile!". The XOR operation is shown below again.
+
+\begin{verbatim}
+    f001d8b622a8b99907b6353e2d2356c1d67e2ce356c3a478 (hex)
+XOR bf73bcd3509299d566c35b5d450337e1bb175f903fafc159 (hex)
+    ------------------------------------------------
+    Order: Launch a missile!                         (ascii)
+\end{verbatim}
+
+P2 is therefore \textbf{Order: Launch a missile!}
+
+For CFB, reusing an IV will leak some information about the first block of the plaintext. Any common prefix will also be leaked. CFB is a little bit more secure and will not completely break like OFB did.
+
+\clearpage
+\subsubsection{Task 6.3: Solution}
+
+I choose my P2 to be the following:
+
+\[ P2 = IV_{P1} \bigoplus IV_{P2} \bigoplus "No" \]
+
+Bob will then encrypt the given P2 as such:
+
+\[ C_2 = E_{k} (IV_2 \bigoplus P_2 ) = E_{k} (IV_2\bigoplus (IV_2\bigoplus IV_1 \bigoplus "No")) \]
+
+$IV_1 \bigoplus IV_1$ cancel out, meaning that the operation that Bob ends up producing is the following:
+
+\[ C_2 = E_k (IV_1 \bigoplus "No") \]
+
+Now we should be able to compare $C_1$ and $C_2$ to see if they match! If they differ, then P1 says "Yes".
+
+Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $C_1 \bigoplus C_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "No" as our reference is calculated as the following:
+
+\begin{verbatim}
+    no (ascii)
+XOR 1  (hex)
+    -----------
+    Nn (Ascii)
+\end{verbatim}
+
+The above operation shows that \textbf{P2 shall be chosen to be "Nn"}. The following commands are used to demonstrate this chosen-plaintext attack.
+
+\begin{verbatim}
+echo "Nn" > P2
+openssl enc -aes-128-cbc -e -in P2 -out P2.bin\
+    -K  00112233445566778899aabbccddeeff \
+    -iv 31323334353637383930313233343537
+xxd -p P2.bin
+
+\end{verbatim}
+
+The end result after executing that command is 04a7ae2040bf474ce8bd33bec3165370 which is a lot different than C1 which is (bef65565572ccee2a9f9553154ed9498).
+
+Therefore, P1 is "Yes".
 
 \end{document}
