@@ -1380,7 +1380,7 @@ Bob will then encrypt the given P2 as such:
 
 \[ C_2 = E_{k} (IV_2 \bigoplus P_2 ) = E_{k} (IV_2\bigoplus (IV_2\bigoplus IV_1 \bigoplus "No")) \]
 
-$IV_1 \bigoplus IV_1$ cancel out, meaning that the operation that Bob ends up producing is the following:
+$IV_2 \bigoplus IV_2$ cancel out, meaning that the operation that Bob ends up producing is the following:
 
 \[ C_2 = E_k (IV_1 \bigoplus "No") \]
 
