@@ -56,7 +56,7 @@
 \large{Secret-Key Encryption Lab}}
 
 \author{Mitchell Dzurick}
-\date{2/3/2020}
+\date{2/17/2020}
 \begin{document}
 
 \maketitle
@@ -1374,7 +1374,7 @@ For CFB, reusing an IV will leak some information about the first block of the p
 
 I choose my P2 to be the following:
 
-\[ P2 = IV_{P1} \bigoplus IV_{P2} \bigoplus "No" \]
+\[ P2 = IV_1 \bigoplus IV_2 \bigoplus "No" \]
 
 Bob will then encrypt the given P2 as such:
 
@@ -1386,7 +1386,7 @@ $IV_2 \bigoplus IV_2$ cancel out, meaning that the operation that Bob ends up pr
 
 Now we should be able to compare $C_1$ and $C_2$ to see if they match! If they differ, then P1 says "Yes".
 
-Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $C_1 \bigoplus C_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "No" as our reference is calculated as the following:
+Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $IV_1 \bigoplus IV_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "No" as our reference is calculated as the following:
 
 \begin{verbatim}
     no (ascii)
@@ -1400,7 +1400,7 @@ The above operation shows that \textbf{P2 shall be chosen to be "Nn"}. The follo
 \begin{verbatim}
 echo "Nn" > P2
 openssl enc -aes-128-cbc -e -in P2 -out P2.bin\
-    -K  00112233445566778899aabbccddeeff \
+  d  -K  00112233445566778899aabbccddeeff \
     -iv 31323334353637383930313233343537
 xxd -p P2.bin
 
