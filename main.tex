@@ -1374,17 +1374,17 @@ For CFB, reusing an IV will leak some information about the first block of the p
 
 I choose my P2 to be the following:
 
-\[ P2 = IV_1 \bigoplus IV_2 \bigoplus "No" \]
+\[ P2 = IV_1 \bigoplus IV_2 \bigoplus "Yes" \]
 
 Bob will then encrypt the given P2 as such:
 
-\[ C_2 = E_{k} (IV_2 \bigoplus P_2 ) = E_{k} (IV_2\bigoplus (IV_2\bigoplus IV_1 \bigoplus "No")) \]
+\[ C_2 = E_{k} (IV_2 \bigoplus P_2 ) = E_{k} (IV_2\bigoplus (IV_2\bigoplus IV_1 \bigoplus "Yes")) \]
 
 $IV_2 \bigoplus IV_2$ cancel out, meaning that the operation that Bob ends up producing is the following:
 
-\[ C_2 = E_k (IV_1 \bigoplus "No") \]
+\[ C_2 = E_k (IV_1 \bigoplus "Yes") \]
 
-Now we should be able to compare $C_1$ and $C_2$ to see if they match! If they differ, then P1 says "Yes".
+Now we should be able to compare $C_1$ and $C_2$ to see if they match! If they differ, then P1 says "No".
 
 Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $IV_1 \bigoplus IV_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "Yes" as our reference is calculated as the following:
 
