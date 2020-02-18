@@ -1386,28 +1386,35 @@ $IV_2 \bigoplus IV_2$ cancel out, meaning that the operation that Bob ends up pr
 
 Now we should be able to compare $C_1$ and $C_2$ to see if they match! If they differ, then P1 says "Yes".
 
-Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $IV_1 \bigoplus IV_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "No" as our reference is calculated as the following:
+Therefore, carefully picking P2 will allow us to encrypt data through Bob using $IV_1$. $IV_1 \bigoplus IV_2$ = 0x1 because the difference between them is just one number. Therefore the P2 when we use "Yes" as our reference is calculated as the following:
 
 \begin{verbatim}
-    no (ascii)
-XOR 1  (hex)
+    5965730d0d0d0d0d0d0d0d0d0d0d0d0d (ascii)
+XOR 00000000000000000000000000000001  (hex)
     -----------
-    Nn (Ascii)
+    5965730d0d0d0d0d0d0d0d0d0d0d0d0c (hex)
 \end{verbatim}
 
-The above operation shows that \textbf{P2 shall be chosen to be "Nn"}. The following commands are used to demonstrate this chosen-plaintext attack.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.55]{t6p3.png}
+    \end{center}{}
+    \caption{executing the chosen plaintext attack}
+    \label{fig:t6p3}
+\end{figure}
+
+Figure~\ref{fig:t6p3} shows the plaintext attack being executed. For easier reading, the command is placed below:
 
 \begin{verbatim}
-echo "Nn" > P2
-openssl enc -aes-128-cbc -e -in P2 -out P2.bin\
-  d  -K  00112233445566778899aabbccddeeff \
-    -iv 31323334353637383930313233343537
-xxd -p P2.bin
-
+$ openssl enc -aes-128-cbc -e -in P2 \
+    -K 00112233445566778899aabbccddeeff \
+    -iv 31323334353637383930313233343537 \
+    -nosalt -nopad | xxd -p
 \end{verbatim}
 
-The end result after executing that command is 04a7ae2040bf474ce8bd33bec3165370 which is a lot different than C1 which is (bef65565572ccee2a9f9553154ed9498).
+the end result gave us "bef65565572ccee2a9f9553154ed9498" which is infact the C1 that we are trying to match! Therefore, we can conclude that P1 is "Yes" and not "No".
 
-Therefore, P1 is "Yes".
+To recap, we use the plaintext P2 "5965730d0d0d0d0d0d0d0d0d0d0d0d0c", and that confirms that P1 is "Yes".
+
 
 \end{document}
