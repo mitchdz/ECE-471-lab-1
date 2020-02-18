@@ -1403,7 +1403,9 @@ XOR 00000000000000000000000000000001  (hex)
     \label{fig:t6p3}
 \end{figure}
 
-Figure~\ref{fig:t6p3} shows the plaintext attack being executed. For easier reading, the command is placed below:
+Figure~\ref{fig:t6p3} shows the plaintext attack being executed. It is noted that the first command is showing the contents of P2 to be what we determined P2 should be earlier. openssl is being used like regular but with the addition of the -nosalt and -nopad flag. The -nopad flag stops openssl enc from turning our 16byte file into a 32byte file. Openssl enc then throws the output into stdout, which we pipe into xxd to immediately view the output.
+
+For easier reading, the command is placed below:
 
 \begin{verbatim}
 $ openssl enc -aes-128-cbc -e -in P2 \
